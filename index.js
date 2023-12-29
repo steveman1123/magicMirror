@@ -20,6 +20,7 @@ function updateWeather() {
 
   //TODO: get coords based on external IP, then get gridpoints, then get weather (could also get geocoding via http://www.geoplugin.net/php.gp?ip={external-ip} get coords from there, then get gridpoints and city/state)
   //https://weather-gov.github.io/api/gridpoints
+  //https://www.weather.gov/documentation/services-web-api
   //gridpoints = readTextFile("https://api.weather.gov/points/{lat},{lon}")
   /*
   coords, gridid, gridpoints:
@@ -33,11 +34,20 @@ function updateWeather() {
   gridx = "160";
   gridy = "60";
 
-  var weather = readTextFile("https://api.weather.gov/gridpoints/"+gridid+"/"+gridx+","+gridy+"/forecast");
+  url = "https://api.weather.gov/gridpoints/"+gridid+"/"+gridx+","+gridy+"/forecast";
+
+  fetch(url).then(response => response.json())
+    .then(json => {
+      console.log(json);
+    });
+
+  return false;
+
   weather = weather['properties']['periods'];
 
   document.getElementById("weatherList").innerHTML = "";
 
+  //number of sections to populate
   sectionNum = 5;
 
   for(i=0;i<sectionNum;i++){
@@ -101,7 +111,7 @@ document.onload = updateWeather();
 document.onload = updateQuote();
 document.onload = updateCompliment();
 document.onload = time();
-window.setInterval(updateWeather,60*60*1000); //update every hour
+//window.setInterval(updateWeather,60*60*1000); //update every hour
 window.setInterval(updateCompliment,6*60*60*1000); //update every 6 hours
 window.setInterval(updateQuote,24*60*60*1000); //update every day
 window.setInterval(time, 500); //update time every half second

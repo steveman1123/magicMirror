@@ -3,11 +3,16 @@ html, body {
   margin: 0;
   background-color: black;
   font-family: sans-serif;
-  color: white;
+  color: #aaa;
+}
+
+div {
+  border: solid red 1px;
 }
 
 #weatherList {
   width: 45%;
+  max-wdith: 45%;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -43,16 +48,21 @@ html, body {
   font-style: italic;
 }
 
+
+#datetime {
+  text-align: right;
+  color: white;
+}
 #clock {
   font-size: 120pt;
-  text-align: center;
 }
 #date {
   font-size: 50pt;
-  text-align: center;
 }
+
 
 #compliment {
   width: 40%;
-  margin: 5%;
+  margin-top: 5%;
+  font-size: 20pt;
 }
