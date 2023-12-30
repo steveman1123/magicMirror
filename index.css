@@ -1,68 +1,61 @@
 html, body {
-  width: 100%;
   margin: 0;
-  background-color: black;
-  font-family: sans-serif;
+  padding: 0;
   color: #aaa;
-}
-
-div {
-  border: solid red 1px;
-}
-
-#weatherList {
-  width: 45%;
-  max-wdith: 45%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-}
-
-.wSection {
-  vertical-align: text-top;
+  background-color: black;
   width: 100%;
-  line-height: 100%;
+  height: 100%;
+  font-family: sans-serif;
 }
 
-.wTime, .forecast {
-  padding: 5px;
-  width: 70%;
-  display: inline-block;
-  vertical-align: top;
-  line-height: 100%;
-  margin-top: 10px;
+body > div {
+  margin: 2%;
 }
 
-.wTime {
-  width: 20%;
-}
-
-#quoteWrap {
-  width: 35%;
-  position: absolute;
-  left: 5%;
-  bottom: 5%;
-}
-
-#quote {
-  font-style: italic;
-}
-
+/** { border: solid red 1px; }*/
 
 #datetime {
-  text-align: right;
   color: white;
+  text-align: right;
 }
-#clock {
-  font-size: 120pt;
+#clock { font-size: 12vw; }
+#date { font-size: 5vw; }
+
+
+.flexwrap {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  height: 85%;
 }
-#date {
-  font-size: 50pt;
+
+.flexitem {
+  width: 45%;
+}
+
+.flexitem > div {
+  margin-top: 20px;
+}
+
+#quotewrap {
+  font-size: 2vw;
+}
+#quote { font-style: italic; }
+
+#weatherwrap {
+  height: 75%;
 }
 
 
-#compliment {
-  width: 40%;
-  margin-top: 5%;
-  font-size: 20pt;
+#thisdayinhistory {
+  text-align: center;
+  font-size: 3vw;
+}
+
+#notifications {
+  text-align: center;
+}
+
+#pics > img {
+  width: 100%;
 }

@@ -45,7 +45,7 @@ function updateWeather() {
 
   weather = weather['properties']['periods'];
 
-  document.getElementById("weatherList").innerHTML = "";
+  document.getElementById("weatherwrap").innerHTML = "";
 
   //number of sections to populate
   sectionNum = 5;
@@ -59,7 +59,7 @@ function updateWeather() {
     wTime.className = 'wTime';
     forecast.className = 'forecast';
 
-    document.getElementById("weatherList").appendChild(wSection);
+    document.getElementById("weatherwrap").appendChild(wSection);
     document.getElementsByClassName("wSection")[i].appendChild(wTime);
     document.getElementsByClassName("wSection")[i].appendChild(forecast);
 
@@ -70,6 +70,10 @@ function updateWeather() {
   }
 }
 
+function updateHistory() {
+
+}
+
 function updateQuote() {
   var quotes = readTextFile('./quotes.json');
   var quote = quotes[parseInt(Math.random()*quotes.length)];
@@ -77,12 +81,6 @@ function updateQuote() {
   quote = quote[0];
   document.getElementById("quote").innerHTML = quote;
   document.getElementById("author").innerHTML = author;
-}
-
-function updateCompliment() {
-  var cs = readTextFile('./compliments.json');
-  var c = cs[parseInt(Math.random()*cs.length)];
-  document.getElementById("compliment").innerHTML = c;
 }
 
 function time() {
@@ -108,10 +106,10 @@ function addZero(i) {
 }
 
 document.onload = updateWeather();
+document.onload = updateHistory();
 document.onload = updateQuote();
-document.onload = updateCompliment();
 document.onload = time();
 //window.setInterval(updateWeather,60*60*1000); //update every hour
-window.setInterval(updateCompliment,6*60*60*1000); //update every 6 hours
-window.setInterval(updateQuote,24*60*60*1000); //update every day
+window.setInterval(updateHistory,24*60*60*1000); //update every day
+window.setInterval(updateQuote,60*60*1000); //update every hour
 window.setInterval(time, 500); //update time every half second
