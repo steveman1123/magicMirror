@@ -6,6 +6,9 @@
 $histfilepath = "./history-files/";
 $savefile = $histfilepath.date("F_j").".json";
 
+//wikipedia oddly has a lot of events involving death leading to a lot of bad news
+$scrubdeaths = true;
+
 //if json file is stored already and it's been updated this year
 if(file_exists($savefile) and (int)date("Y",filectime($savefile)) == (int)date("Y")) {
     $out = file_get_contents($savefile);
@@ -33,15 +36,25 @@ if(file_exists($savefile) and (int)date("Y",filectime($savefile)) == (int)date("
     $v = strip_tags(explode($dataend,$v)[0]);
   }
 
-  //replace any special html characters
+  //replace any special html characters and excess whitespace
   $out = preg_replace("/&#8211;/", "-", $out);
   $out = preg_replace("/&#160;/", " ", $out);
-  $out = preg_replace("/&#91;\d&#93;/","",$out);
+  $out = preg_replace("/&#91;.*?&#93;/","",$out);
+  $out = preg_replace("/(\s)+/"," ",$out);
 
   //write to the json file
   $out = json_encode($out);
   file_put_contents($savefile, $out);
 }
+
+//remove mentions of death, kill, and injury since wikipedia has a lot of those entries
+if($scrubdeaths) {
+  $tmp = array_filter(json_decode($out,true),function($v) {
+    return !(stripos($v,' death') || stripos($v," kill") || stripos($v," injury"));
+  });
+  $out = json_encode(array_values($tmp));
+}
+
 
 // output json
 header('Content-Type: application/json');
