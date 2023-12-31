@@ -14,7 +14,7 @@ Get your api key from openweathermap, and share a google calendar* and put the s
 
 if running from terminal/ssh, the display needs to be set using `export DISPLAY=:0`
 start chromium in fullscreen and with cache disabled and pointing to localhost with the following command:
-`chromium-browser --kiosk --disable-application-cache --aggressive-cache-discard --disk-cache-dir="/tmp/" --incognito http://localhost/index.html &`
+`chromium-browser --kiosk --disable-application-cache --aggressive-cache-discard --disk-cache-dir="/tmp/" --incognito http://localhost/index.php &`
 
 Use the shell scripts to start or restart the mirror
 

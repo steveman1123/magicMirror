@@ -12,7 +12,7 @@ export DISPLAY=:0
 #sleep 3
 
 echo "opening browser"
-chromium-browser --kiosk --disable-application-cache --aggressive-cache-discard --disk-cache-dir="/tmp/" --incognito http://localhost/index.html &
+chromium-browser --kiosk --disable-application-cache --aggressive-cache-discard --disk-cache-dir="/tmp/" --incognito http://localhost/index.php &
 echo "opened browser"
 
 #sleep 3
