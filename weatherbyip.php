@@ -12,18 +12,19 @@ $ip = file_get_contents("https://api.ipify.org");
 //get the location based on ip
 $location = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$ip));
 
-// $country = $location['geoplugin_countryCode'];
-// $region = $location['geoplugin_regionCode'];
-// $city = $location['geoplugin_city'];
+$country = $location['geoplugin_countryCode'];
+$region = $location['geoplugin_regionCode'];
+$city = $location['geoplugin_city'];
 
-$lat = $location['geoplugin_latitude'];
-$lon = $location['geoplugin_longitude'];
+//$lat = $location['geoplugin_latitude'];
+//$lon = $location['geoplugin_longitude'];
 
 //get the weather based on location
 $url = "https://api.openweathermap.org/data/2.5/weather";
 $params = array(
-  "lat" => $lat,
-  "lon" => $lon,
+  //"lat" => $lat,
+  //"lon" => $lon,
+  "q" => $city.",".$region.",".$country,
   "appid" => $apikeys['openweathermap'],
   "units" => "metric" //"metric", "imperial", or "standard"
 );

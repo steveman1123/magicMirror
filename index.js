@@ -129,4 +129,4 @@ window.setInterval(updateHistory,5*60*1000); //24*60*60*1000); //update every da
 window.setInterval(updateQuote,60*1000); //60*60*1000); //update every hour
 window.setInterval(time, 500); //update time every half second
 
-window.setInterval(refreshCalendar, 6*60*60*1000); //refresh calendar every 6 hours
+window.setInterval(refreshCalendar, 2*60*60*1000); //refresh calendar every 2 hours

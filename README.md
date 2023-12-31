@@ -18,6 +18,6 @@ start chromium in fullscreen and with cache disabled and pointing to localhost w
 
 Use the shell scripts to start or restart the mirror
 
+autostart the mirror by adding the line `@/bin/bash /path/to/startMirror.sh` to `~/.config/lxsession/LXDE-pi/autostart`
 
-## Known Issues
- - Current setup doesn't allow actually autostarting the software since GUI applications cannot be started from crontab (and I haven't had luck with other methods yet)
+The pi zero w is fairly sluggish on startup, taking about 2 minutes from power on to fully operational
