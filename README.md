@@ -3,19 +3,21 @@ Files for making a magic mirror
 
 
 ## Hardware Setup
-For my setup, I have a raspi zero w attached to an old TV 22" TV from a thrift store via HDMI. I made a basic wood frame and cut a piece of glass down to size, then put 1-way mirror film on the glass for the mirroring.
+For my setup, I have a raspi zero w attached via HDMI to an old 22" TV from a thrift store. I made a basic wood frame and cut a piece of glass down to size, then put 1-way mirror film on the glass for the mirroring.
 
 ## Software Setup
-`sudo apt install apache2 php php-apache`
-Set up apache to use a specified directory
+`sudo apt install apache2 php php-apache chromium-browser screen`
+Set up apache to use a specified directory to serve from
 Copy the web files from this repo to that directory
-autostart chromium in fullscreen and with cache disabled and pointing to localhost
+Get your api key from openweathermap, and share a google calendar* and put the share link in the key file
+*Current set up is meant for 600px height, agenda view, with everything turned off, and a white background
 
+if running from terminal/ssh, the display needs to be set using `export DISPLAY=:0`
+start chromium in fullscreen and with cache disabled and pointing to localhost with the following command:
+`chromium-browser --kiosk --disable-application-cache --aggressive-cache-discard --disk-cache-dir="/tmp/" --incognito http://localhost/index.html &`
+
+Use the shell scripts to start or restart the mirror
 
 
 ## Known Issues
- - webpage doesn't update from cache
- - screen turns off after a little bit
- - software setup section is incomplete
- - webpage doesn't quite work yet
- - webpage doesn't automagically get location form IP (so weather location needs to be set manually)
+ - Current setup doesn't allow actually autostarting the software since GUI applications cannot be started from crontab (and I haven't had luck with other methods yet)

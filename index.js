@@ -1,22 +1,6 @@
 
-//TODO: this is depreciated
-function readTextFile(file) {
-  var output = "";
-  var rawFile = new XMLHttpRequest();
-  rawFile.open("GET", file, false);
-  rawFile.onreadystatechange = function () {
-    if(rawFile.readyState === 4) {
-      if(rawFile.status === 200 || rawFile.status === 0) {
-        var allText = rawFile.responseText;
-        output = JSON.parse(allText);
-      }
-    }
-  };
-  rawFile.send(null);
-  return output;
-}
 
-function updateWeather() {
+function updateWeatherGov() {
 
   //TODO: get coords based on external IP, then get gridpoints, then get weather (could also get geocoding via http://www.geoplugin.net/php.gp?ip={external-ip} get coords from there, then get gridpoints and city/state)
   //https://weather-gov.github.io/api/gridpoints
@@ -70,17 +54,44 @@ function updateWeather() {
   }
 }
 
-function updateHistory() {
+function updateWeatherOpen() {
+  url = "./weatherbyip.php";
+  options = {
+    method: "GET"
+  };
+  fetch(url,options).then(response => response.json())
+    .then(json => {
+      document.getElementById("weatherarea").innerText = json['name'];
+      document.getElementById("weatherdata").innerHTML = 
+      "<p>"+json['weather'][0]['description']+"</p>\
+      <p>"+json['main']['temp']+"&deg;C, feels like "+json['main']['feels_like']+"&deg;C</p>\
+      <p>Humidity: "+json['main']['humidity']+"%\
+      <p>Wind: "+json['wind']['speed']+"kph";
 
+    });
+}
+
+function updateHistory() {
+  url = "./thisdayinhistory.php";
+  options = {
+    method: "GET"
+  };
+  fetch(url,options).then(response => response.json())
+    .then(json => {
+      hist = json[parseInt(Math.random()*json.length)];
+      document.getElementById("history").innerText = hist;
+    });
 }
 
 function updateQuote() {
-  var quotes = readTextFile('./quotes.json');
-  var quote = quotes[parseInt(Math.random()*quotes.length)];
-  var author = quote[1];
-  quote = quote[0];
-  document.getElementById("quote").innerHTML = quote;
-  document.getElementById("author").innerHTML = author;
+  url = "./quotes.json";
+  fetch(url).then(response => response.json())
+    .then(json => {
+      var quote = json[parseInt(Math.random()*json.length)];
+      document.getElementById("quote").innerHTML = quote[0];
+      document.getElementById("author").innerHTML = quote[1];
+
+    })
 }
 
 function time() {
@@ -105,11 +116,11 @@ function addZero(i) {
   return i;
 }
 
-document.onload = updateWeather();
+document.onload = updateWeatherOpen();
 document.onload = updateHistory();
 document.onload = updateQuote();
 document.onload = time();
-//window.setInterval(updateWeather,60*60*1000); //update every hour
-window.setInterval(updateHistory,24*60*60*1000); //update every day
-window.setInterval(updateQuote,60*60*1000); //update every hour
+window.setInterval(updateWeatherOpen,60*60*1000); //update every hour
+window.setInterval(updateHistory,300*1000); //24*60*60*1000); //update every day
+window.setInterval(updateQuote,30*1000); //60*60*1000); //update every hour
 window.setInterval(time, 500); //update time every half second
