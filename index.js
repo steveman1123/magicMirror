@@ -125,8 +125,8 @@ document.onload = updateHistory();
 document.onload = updateQuote();
 document.onload = time();
 window.setInterval(updateWeatherOpen,60*60*1000); //update every hour
-window.setInterval(updateHistory,300*1000); //24*60*60*1000); //update every day
-window.setInterval(updateQuote,30*1000); //60*60*1000); //update every hour
+window.setInterval(updateHistory,5*60*1000); //24*60*60*1000); //update every day
+window.setInterval(updateQuote,60*1000); //60*60*1000); //update every hour
 window.setInterval(time, 500); //update time every half second
 
-//window.setInterval(refreshCalendar, 6*60*60*1000); //refresh calendar every 6 hours
+window.setInterval(refreshCalendar, 6*60*60*1000); //refresh calendar every 6 hours
