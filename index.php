@@ -20,7 +20,7 @@
       
       <div class="flexitem">
         <div id="calendar">
-          <iframe src=<?php echo $calendarlink; ?> style="height: 600px;" scrolling="no"></iframe>
+          <iframe id="googlecalendar" src=<?php echo $calendarlink; ?> style="height: 600px;" scrolling="no"></iframe>
           <div class="fader"></div>
         </div>
       </div>

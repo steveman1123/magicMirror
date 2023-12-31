@@ -81,7 +81,7 @@ body > div {
 
 
 #thisdayinhistory {
-  text-align: center;
+  text-align: right;
   font-size: 3vw;
   height: 12em;
   overflow: hidden;
@@ -89,10 +89,6 @@ body > div {
 
 #history {
   font-size: 2.5vw;
-}
-
-#notifications {
-  text-align: center;
 }
 
 #pics > img {
